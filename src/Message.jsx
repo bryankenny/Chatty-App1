@@ -3,7 +3,7 @@ import React, {Component} from 'react'
   render() {
     console.log("Rendering Message")
     return (
-      <div className="message">
+      <div className="message" data-id={this.props.id}>
         <span className="message-username">{this.props.user}</span>
         <span className="message-content">{this.props.content}</span>
       </div>

@@ -18,7 +18,11 @@ class App extends Component {
         {
           username: "Anonymous",
           content: "No, I think you lost them. You lost your marbles Bob. You lost them for good."
-        }
+        },
+        {
+          username: "Bryan",
+          content: "Rats",
+        },
       ]
     }
   }
@@ -37,3 +41,7 @@ class App extends Component {
   }
 }
 export default App;
+
+
+//line 34- calling the Chatbar, Navbar and MessageList components inside of a div tag in app.jsx, the root component, so they  will be rendered onto the page
+//line 34- defining user variable and this.state.currentUser, defining messages variable as this.state.messages

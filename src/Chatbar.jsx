@@ -16,7 +16,7 @@ class ChatBar extends Component {
         <input className="chatbar-username" placeholder="Anonymous" value={this.props.user.name} />
         <input className="chatbar-message" placeholder="Type a message and hit ENTER" onChange={this.props.handleTextEnter}
                onKeyDown={this.props.handleSubmit} />
-      </footer>
+      </footer>  //passing functions through props to Chatbar
     );
   }
 }

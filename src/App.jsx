@@ -28,7 +28,7 @@ class App extends Component {
     }
 
     this.socket.onopen = function (event) {
-      alert("hello world");
+      alert("hello world")
     }
 
   this.socket.onmessage = function (event) {
@@ -67,6 +67,7 @@ class App extends Component {
 
           this.socket.send(JSON.stringify(enterMsg)) //sending stringified JSON data to the server
           event.target.value = ""  //resetting the values in the form back to the placeholder
+          
     }
   }
 

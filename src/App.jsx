@@ -11,10 +11,11 @@ class App extends Component {
     // this is the *only* time you should assign directly to state:
     this.socket = new WebSocket("ws://0.0.0.0:3001")
     this.state = {
-      currentUser: {name: "Bryan"},
+      name: "Bryan",
       messages: [] // messages coming from the server will be stored here as they arrive
     };
-     
+    
+    this.handleNameEnter = this.handleNameEnter.bind(this);
     this.handleTextEnter = this.handleTextEnter.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -27,9 +28,9 @@ class App extends Component {
       console.log("connected 2 server");
     }
 
-    this.socket.onopen = function (event) {
-      alert("hello world")
-    }
+    // this.socket.onopen = function (event) {
+    //   alert("hello world")
+    // }
 
   this.socket.onmessage = function (event) {
     let msgInput = JSON.parse(event.data) //parsed JSON data from the onmessage event, allows for key/value pairs in newMsg to access data ie msgInput.username
@@ -50,10 +51,10 @@ class App extends Component {
     event.stopPropagation()  
      if (event.key === 'Enter') {
         let uName;                           //defining variable uName to reference this.state.currentUser.name 
-        if (!this.state.currentUser.name) {
+        if (!this.state.name) {
          uName = "Anonymous"                 //nested if statemnt to display sifferent data depending on this.state.currentUser.name
        } else {
-         uName = this.state.currentUser.name
+         uName = this.state.name
        }
 
         const enterMsg = {
@@ -67,12 +68,17 @@ class App extends Component {
 
           this.socket.send(JSON.stringify(enterMsg)) //sending stringified JSON data to the server
           event.target.value = ""  //resetting the values in the form back to the placeholder
-          
     }
+  } 
+
+    handleNameEnter(event) {
+    this.setState({name: event.target.value});
+    console.log('banana');
   }
 
     handleTextEnter(event) {
     this.setState({text: event.target.value});
+    console.log('app');
   }
    
    // Called after the component was rendered and it was attached to the
@@ -80,7 +86,7 @@ class App extends Component {
     render() {
      return (
        <div>
-        <Navbar /> <MessageList messages={this.state.messages}/> <ChatBar user={this.state.currentUser} handleSubmit={this.handleSubmit} handleTextEnter={this.handleTextEnter}/>
+        <Navbar /> <MessageList messages={this.state.messages}/> <ChatBar user={this.state.name} handleSubmit={this.handleSubmit} handleTextEnter={this.handleTextEnter} handleNameEnter={this.handleNameEnter} />
        </div>
      );
    }

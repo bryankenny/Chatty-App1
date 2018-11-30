@@ -1,16 +1,9 @@
 import React, {Component} from 'react'
  
 class ChatBar extends Component {
-  render() {
   
-    let name;
-
-    // if (!this.props.user.name) {
-    //     return "Anonymous"
-    // }
-    // else {
-    //     name = this.props.user.name
-    // }
+  render() {
+    
     return (
       <footer className="chatbar">
         <input className="chatbar-username" placeholder="Anonymous" onChange={this.props.handleNameEnter}  />
@@ -20,4 +13,5 @@ class ChatBar extends Component {
     );
   }
 }
- export default ChatBar 
+ 
+export default ChatBar 

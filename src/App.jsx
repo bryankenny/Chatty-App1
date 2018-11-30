@@ -11,9 +11,9 @@ class App extends Component {
     // this is the *only* time you should assign directly to state:
     this.socket = new WebSocket("ws://0.0.0.0:3001")
     this.state = {
-      name: "Bryan",
+      name: "Anon",
       messages: [] // messages coming from the server will be stored here as they arrive
-    };
+  };
     
     this.handleNameEnter = this.handleNameEnter.bind(this);
     this.handleTextEnter = this.handleTextEnter.bind(this);
@@ -26,7 +26,7 @@ class App extends Component {
       this.socket.onopen = function (event) {
       this.socket.send(JSON.stringify({username: "Anon", content: "Connected to server!"}))
       console.log("connected 2 server");
-    }
+  }
 
     // this.socket.onopen = function (event) {
     //   alert("hello world")
@@ -38,15 +38,18 @@ class App extends Component {
       username: msgInput.username,          
       content: msgInput.content,
       id: msgInput.id
-    }
+  }
 
   const messages = this.state.messages.concat(newMsg);
   this.setState({messages: messages})
+
   }
 
   this.socket.onopen = this.socket.onopen.bind(this);
   this.socket.onmessage = this.socket.onmessage.bind(this);
-}
+
+  }
+
    handleSubmit(event) {
     event.stopPropagation()  
      if (event.key === 'Enter') {

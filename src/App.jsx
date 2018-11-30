@@ -3,6 +3,8 @@ import Navbar from './Navbar.jsx'
 import ChatBar from './ChatBar.jsx'
 import MessageList from './MessageList.jsx'
 
+const uuidv1 = require('uuid/v1');
+
 
 
  class App extends Component {
@@ -32,9 +34,21 @@ import MessageList from './MessageList.jsx'
     }, 3000);
 
      this.socket.onopen = function (event) {
-      this.send(JSON.stringify({username: "Anon", content: "Connected to server!"}))
+      this.socket.send(JSON.stringify({username: "Anon", content: "Connected to server!"}))
       console.log("connected 2 server");
     }
+  //   this.socket.onmessage = function (event) {
+  //     let inMsg = JSON.parse(event.data)
+  //     const newMsg = {
+  //      username: inMsg.username,
+  //      content: inMsg.content,
+  //      id: inMsg.id
+  //    }
+  //     const messages = this.state.messages.concat(newMsg);
+  //    this.setState({messages: messages})
+  //  }
+  //   this.socket.onopen = this.socket.onopen.bind(this);
+  //  this.socket.onmessage = this.socket.onmessage.bind(this);
   }
 
    handleSubmit(event) {
@@ -48,7 +62,7 @@ import MessageList from './MessageList.jsx'
        }
 
         const newMsg = {
-         id: Date.now(), 
+         id: uuidv1(), 
          username: uName, //defining enter msg as an object with appropriate key/value pairs
          content: this.state.text
        }

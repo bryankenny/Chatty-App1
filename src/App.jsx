@@ -5,10 +5,8 @@ import MessageList from './MessageList.jsx'
 
 const uuidv1 = require('uuid/v1');
 
-
-
- class App extends Component {
-  constructor(props) {
+class App extends Component {
+    constructor(props) {
     super(props);
     // this is the *only* time you should assign directly to state:
     this.socket = new WebSocket("ws://0.0.0.0:3001")
@@ -23,34 +21,31 @@ const uuidv1 = require('uuid/v1');
 
    componentDidMount() {
     console.log("componentDidMount <App />");
-    setTimeout(() => {
-      console.log("Simulating incoming message");
-      // Add a new message to the list of messages in the data store
-      const newMessage = {id: 3, username: "Michelle", content: "Hello there!"};
-      const messages = this.state.messages.concat(newMessage)
-      // Update the state of the app component.
-      // Calling setState will trigger a call to render() in App and all child components.
-      this.setState({messages: messages})
-    }, 3000);
-
-     this.socket.onopen = function (event) {
+    
+      this.socket.onopen = function (event) {
       this.socket.send(JSON.stringify({username: "Anon", content: "Connected to server!"}))
       console.log("connected 2 server");
     }
-  //   this.socket.onmessage = function (event) {
-  //     let inMsg = JSON.parse(event.data)
-  //     const newMsg = {
-  //      username: inMsg.username,
-  //      content: inMsg.content,
-  //      id: inMsg.id
-  //    }
-  //     const messages = this.state.messages.concat(newMsg);
-  //    this.setState({messages: messages})
-  //  }
-  //   this.socket.onopen = this.socket.onopen.bind(this);
-  //  this.socket.onmessage = this.socket.onmessage.bind(this);
+
+    this.socket.onopen = function (event) {
+      alert("hello world");
+    }
+
+  this.socket.onmessage = function (event) {
+    let msgInput = JSON.parse(event.data) //parsed JSON data from the onmessage event, allows for key/value pairs in newMsg to access data ie msgInput.username
+    const newMsg = {
+      username: msgInput.username,          
+      content: msgInput.content,
+      id: msgInput.id
+    }
+
+  const messages = this.state.messages.concat(newMsg);
+  this.setState({messages: messages})
   }
 
+  this.socket.onopen = this.socket.onopen.bind(this);
+  this.socket.onmessage = this.socket.onmessage.bind(this);
+}
    handleSubmit(event) {
     event.stopPropagation()  
      if (event.key === 'Enter') {
@@ -61,16 +56,16 @@ const uuidv1 = require('uuid/v1');
          uName = this.state.currentUser.name
        }
 
-        const newMsg = {
-         id: uuidv1(), 
+        const enterMsg = {
+         id: uuidv1(), // calling uuidv1 to generate uuid as id for entered messages
          username: uName, //defining enter msg as an object with appropriate key/value pairs
          content: this.state.text
        }
-        const messages = this.state.messages.concat(newMsg) // Update the state of the app component.
+        const messages = this.state.messages.concat(enterMsg) // Update the state of the app component.
                                                              // Calling setState will trigger a call to render() in App and all child components.
           this.setState({messages: messages, text: ""})
 
-          this.socket.send(JSON.stringify(newMsg))
+          this.socket.send(JSON.stringify(enterMsg)) //sending stringified JSON data to the server
           event.target.value = ""  //resetting the values in the form back to the placeholder
     }
   }

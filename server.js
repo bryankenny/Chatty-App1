@@ -1,7 +1,6 @@
 var webpack = require('webpack');
 var WebpackDevServer = require('webpack-dev-server');
 var config = require('./webpack.config');
-const uuidv1 = require('uuid');
 
 new WebpackDevServer(webpack(config), {
     publicPath: config.output.publicPath,
@@ -15,7 +14,6 @@ new WebpackDevServer(webpack(config), {
     if (err) {
       console.log(err);
     }
-    
 
     console.log('Running at http://0.0.0.0:3000');
   });

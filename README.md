@@ -31,7 +31,7 @@ open http://localhost:3000
 
 !["Notification displayed when user changes name"](https://github.com/bryankenny/Chatty-App1/blob/5c023ffe30341fe62fbb8276f6fb7974b4dd7569/docs/UserChangeName.png?raw=true)
 
-!"Notification displayed when user changes name"](https://github.com/bryankenny/Chatty-App1/blob/master/docs/2-Users-Online.png?raw=true)
+!["Notification displayed when user changes name"](https://github.com/bryankenny/Chatty-App1/blob/master/docs/2-Users-Online.png?raw=true)
 
 
 !["Notification displayed when user changes name"](https://github.com/bryankenny/Chatty-App1/blob/master/docs/Users-Messaging-Each-Other.png?raw=true)

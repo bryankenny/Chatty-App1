@@ -8,7 +8,7 @@ class App extends Component {
 
   socket = new WebSocket("ws://localhost:3001");
 
-  constructor() {
+  constructor() {  //setting intitial state
     super();
     this.state = {
       currentUser: {name: "Anonymous"}, // optional. if currentUser is not defined, it means the user is Anonymous

@@ -11,7 +11,7 @@ git remote add origin [YOUR NEW REPOSITORY]
 # Manually update your package.json file
 ```
 
-Install the dependencies and start the server.
+Install the dependencies and start the server. I would reccomend opening 2 terminal windows with the chatty_server directory open in one, and the react_simple_boilerplate in the other. Run npm start in react_simple_boilerplate and node chatty_server.js in chatty_server.
 
 ```
 npm install
